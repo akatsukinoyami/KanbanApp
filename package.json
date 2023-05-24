@@ -1,0 +1,12 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "rollup": "^3.23.0"
+  },
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs rollup.config.js"
+  }
+}
