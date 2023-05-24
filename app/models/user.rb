@@ -1,4 +1,4 @@
-class User
+class User < ApplicationRecord
   has_many :tasks
   
   validates :first_name, presence: true

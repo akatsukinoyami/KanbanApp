@@ -6,9 +6,21 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create!(
+user = User.create!(
     first_name: "first_name", 
     last_name: "last_name", 
     email: "test@mail.com", 
     password: "q1w2e3r4"
 )
+
+%i[to_do in_progress review done cancelled].each do |status|
+    %i[high normal low].each do |priority|
+        Task.create!(
+            title: "Task #{status} #{priority}",
+            description: "",
+            status:,
+            priority:,
+            user:
+        )
+    end
+end
