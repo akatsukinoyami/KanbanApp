@@ -1,24 +1,15 @@
-# README
+# KanbanApp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+- Start containers using:
 
-* Ruby version
+    ```sh
+    docker-compose up
+    ```
 
-* System dependencies
+- Create DBs using:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    ```sh
+    docker-compose run web rails db:create
+    ```
