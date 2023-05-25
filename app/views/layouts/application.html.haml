@@ -10,5 +10,14 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
     = render partial: "layouts/navbar"
+      
     .container.pt-4
+      - if alert 
+        .alert.alert-danger{role: "alert"}
+          = alert
+
+      - if notice
+        .alert.alert-success{role: "alert"}
+          = notice
+
       = yield
