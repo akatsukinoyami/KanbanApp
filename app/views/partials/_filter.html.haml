@@ -1,0 +1,4 @@
+.row 
+  .col-md-3.offset-md-9
+    = label :priority, :priority_filter, class: "fw-bold"
+    = select_tag :priority, options_for_select(@priorities, @priority), include_blank: true, class: "form-control",  data: { controller: "task", action: "task#filter" }
