@@ -1,8 +1,7 @@
-= turbo_frame_tag "body" do
-  .row
-    - @statuses.each do |key, value|
-      .col
-        %div.my-3
-          %b= key.humanize
-        - @tasks.where(status: value).each do |task|
-          = render task
+.row.row-cols-sm-1.row-cols-md-3.row-cols-lg-5
+  - @statuses.each do |key, value|
+    .col
+      %div.my-3
+        %b= key.humanize
+      - @tasks.with_status(value).each do |task|
+        = render task
