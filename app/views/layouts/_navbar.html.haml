@@ -5,9 +5,10 @@
     %span.navbar-toggler-icon
 
   #navbarSupportedContent.collapse.navbar-collapse
-    %ul.navbar-nav.ms-auto
-      %li.nav-item
-        = link_to "Hello, #{current_user.name}!", "#", class: "nav-link"
+    - if current_user
+      %ul.navbar-nav.ms-auto
+        %li.nav-item
+          = link_to "Hello, #{current_user.name}!", "#", class: "nav-link"
         
-      %li.nav-item
-        = link_to "Logout", destroy_user_session_path, class: "nav-link"
+        %li.nav-item
+          = button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light"
