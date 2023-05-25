@@ -9,4 +9,6 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
-    = yield
+    = render partial: "layouts/navbar"
+    .container.pt-4
+      = yield
