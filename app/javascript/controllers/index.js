@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import AlertController from "./alert_controller"
+application.register("alert", AlertController)
+
 import TaskController from "./task_controller"
 application.register("task", TaskController)
