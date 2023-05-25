@@ -11,6 +11,7 @@ gem "jbuilder"                        # Build JSON APIs with ease [https://githu
 gem "jsbundling-rails"                # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "nokogiri", force_ruby_platform: true
 gem "haml-rails", "~> 2.0"
+gem "hotwire-rails", "~> 0.1.3"
 gem "pg", "~> 1.1"                    # Use postgresql as the database for Active Record
 gem "puma", "~> 5.0"                  # Use the Puma web server [https://github.com/puma/puma]
 gem "rails", "~> 7.0.4", ">= 7.0.4.3" # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
