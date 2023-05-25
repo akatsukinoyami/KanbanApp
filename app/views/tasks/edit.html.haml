@@ -1,7 +1,4 @@
-%h1 Editing task
-= render "form", task: @task
-%br/
-%div
-  = link_to "Show this task", @task
-  |
-  \#{link_to "Back to tasks", tasks_path}
+= render partial: "partials/head", locals: { title: "Edit task", link_name: sanitize("&larr; Back to tasks"), link_path: tasks_path }
+
+= turbo_frame_tag dom_id(@task) do
+  = render "form", task: @task
