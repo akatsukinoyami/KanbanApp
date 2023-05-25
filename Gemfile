@@ -3,11 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
+gem "audited", "~> 5.3"
 gem "bootsnap", require: false        # Reduces boot times through caching; required in config/boot.rb
 gem "bootstrap", "~> 5.2"
 gem "cssbundling-rails"               # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "devise", "~> 4.9"
-gem "jbuilder"                        # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jsbundling-rails"                # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "nokogiri", force_ruby_platform: true
 gem "haml-rails", "~> 2.0"
