@@ -1,2 +1,13 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   %a.navbar-brand.px-2{ href: "/" } KanbanApp
+
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", type: "button"}
+    %span.navbar-toggler-icon
+
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.ms-auto
+      %li.nav-item
+        = link_to "Hello, #{current_user.name}!", "#", class: "nav-link"
+        
+      %li.nav-item
+        = link_to "Logout", destroy_user_session_path, class: "nav-link"
