@@ -5,13 +5,21 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
-    @task = Task.new
+    @tasks = current_user.tasks.order(priority: :asc)
+    @tasks = @tasks.with_priority(params[:priority]) if params[:priority]
+
     @statuses = Task.statuses
+    @priorities = Task.priorities.keys
+    @priority = params[:priority] || ""
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
+  end
+
+  # GET /tasks/1/logs
+  def logs
+    @task = Task.find(params[:task_id])
   end
 
   # GET /tasks/new
@@ -26,6 +34,7 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @task = Task.new(task_params)
+    current_user.tasks << @task
 
     if @task.save
       redirect_to tasks_path, notice: "Task was successfully created."
