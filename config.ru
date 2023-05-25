@@ -2,7 +2,5 @@
 
 require_relative "config/environment"
 
-`yarn build`
-
 run Rails.application
 Rails.application.load_server
