@@ -1,4 +1,5 @@
 = turbo_frame_tag "head" do
   .d-flex.justify-content-between.py-3
     %h1= title
-    = link_to link_name, link_path, class: "btn btn-primary", data: { turbo_frame: "_top" }
+    %div
+      = link_to link_name, link_path, class: "btn btn-primary", data: { turbo_frame: "_top" }
