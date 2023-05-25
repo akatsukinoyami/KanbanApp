@@ -1,32 +1,32 @@
-= render(layout: "layouts/card", locals: { task: }) do
-  = form_with(model: task) do |f|
-    - if task.errors.any?
-      %div{style: "color: red"}
-        %h2
-          = pluralize(task.errors.count, "error")
-          prohibited this task from being saved:
-        %ul
-          - task.errors.each do |error|
-            %li= error.full_message
-    %div
-      .form-group.pb-2
-        = f.label :title
-        = f.text_field :title, class: "form-control", placeholder: :title
+= form_with(model: task) do |f|
+  - if task.errors.any?
+    .alert.alert-danger{role: "alert"}
+      %h2
+        = pluralize(task.errors.count, "error")
+        prohibited this task from being saved:
+      %ul
+        - task.errors.each do |error|
+          %li= error.full_message
+  %div
+    .form-group.pb-2
+      = f.label :title
+      = f.text_field :title, class: "form-control", placeholder: :title
 
-      .form-group.pb-2
-        = f.label :description
-        = f.text_area :description, class: "form-control", placeholder: :description
+    .form-group.pb-2
+      = f.label :description
+      = f.text_area :description, class: "form-control", placeholder: :description
 
-      .form-group.pb-2
-        = f.label :status
-        = f.select :status, options_for_select(@statuses, task.status), {}, class: "form-control"
+    .form-group.pb-2
+      = f.label :status
+      = f.select :status, options_for_select(@statuses, task.status), {}, class: "form-control"
 
-      .form-group.pb-2
-        = f.label :priority  
-        = f.select :priority, options_for_select(@priorities, task.priority), {}, class: "form-control"
+    .form-group.pb-2
+      = f.label :priority  
+      = f.select :priority, options_for_select(@priorities, task.priority), {}, class: "form-control"
 
-      .form-group.pb-2
-        = f.label :assigned_user
-        = f.select :user_id, options_for_select(@users), {}, class: "form-control"
-
-      = f.submit class: "btn btn-primary", data: { turbo_frame: "_top" }
+    - if params[:action] == "edit"
+      .d-flex.justify-content-between
+        = link_to "Back", task_path(@task), class: "btn btn-sm btn-outline-primary" 
+        = f.submit "Update", class: "btn btn-sm btn-outline-success", data: { turbo_frame: "_top" }
+    - else
+      = f.submit "Update", class: "btn btn-outline-success", data: { turbo_frame: "_top" }
