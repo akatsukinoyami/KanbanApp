@@ -9,15 +9,9 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
-    = render partial: "layouts/navbar"
-      
-    .container.pt-4
-      - if alert 
-        .alert.alert-danger{role: "alert"}
-          = alert
-
-      - if notice
-        .alert.alert-success{role: "alert"}
-          = notice
-
-      = yield
+    = render partial: "partials/navbar"
+    = turbo_frame_tag "body" do
+      .container.pt-4
+        = render partial: "partials/alert", locals: { alert: , style: "alert-danger"} if alert
+        = render partial: "partials/alert", locals: { alert: notice, style: "alert-success"} if notice
+        = yield

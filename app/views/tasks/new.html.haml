@@ -1,4 +1,2 @@
 = render partial: "partials/head", locals: { title: "New task", link_name: sanitize("&larr; Back to tasks"), link_path: tasks_path }
-
-= turbo_frame_tag "body" do
-  = render "form", task: @task
+= render "form", task: @task
