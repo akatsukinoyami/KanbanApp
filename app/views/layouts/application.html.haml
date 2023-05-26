@@ -12,8 +12,7 @@
     = render partial: "partials/navbar"
 
     .container.pt-4
-      = render partial: "partials/alert", locals: { alert: , style: "alert-danger"} if alert
-      = render partial: "partials/alert", locals: { alert: notice, style: "alert-success"} if notice
+      = render partial: "partials/flash"
       = yield
 
     = render partial: "partials/footer"
