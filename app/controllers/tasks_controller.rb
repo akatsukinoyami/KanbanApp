@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_changes_count
   before_action :set_task, only: %i[ show edit update destroy ]
   before_action :set_form_variables, only: %i[ new edit ]
 
@@ -73,5 +74,14 @@ class TasksController < ApplicationController
       @statuses = Task.statuses.keys.map { |status| [status.humanize, status]}
       @priorities = Task.priorities.keys.map { |priority| [priority.humanize, priority]}
       @users = User.pluck(:first_name, :id)
+    end
+
+    def set_changes_count
+      now = Time.zone.now
+
+      @changes_count = Audited::Audit.where(
+        user_id: current_user.id, 
+        created_at: now.beginning_of_day..now.end_of_day
+      ).count
     end
 end

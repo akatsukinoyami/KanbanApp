@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %meta{content: "width=device-width,initial-scale=1", name: "viewport"}/
     %title KanbanApp
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
@@ -11,7 +11,10 @@
   %body
     = render partial: "partials/navbar"
     = turbo_frame_tag "body" do
+
       .container.pt-4
         = render partial: "partials/alert", locals: { alert: , style: "alert-danger"} if alert
         = render partial: "partials/alert", locals: { alert: notice, style: "alert-success"} if notice
         = yield
+
+      = render partial: "partials/footer"
