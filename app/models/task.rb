@@ -7,6 +7,8 @@ class Task < ApplicationRecord
   
   belongs_to :user
 
+  after_create_commit { broadcast_append_to('tasks') }
+
   audited
 
   def logs_humanized

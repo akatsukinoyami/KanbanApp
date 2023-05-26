@@ -63,7 +63,11 @@ class TasksController < ApplicationController
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: "Task was successfully destroyed."
+
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Task was successfully destroyed." }
+      format.html { redirect_to tasks_path, notice: "Task was successfully destroyed." }
+    end
   end
 
   private
