@@ -1,3 +1,4 @@
+- task = task || @task
 = render(layout: "layouts/card", locals: { id: dom_id(task) }) do
   %h5.card-title
     = task.title
