@@ -1,4 +1,5 @@
-= render partial: "partials/head", locals: { title: "Edit task", link_name: sanitize("&larr; Back to tasks"), link_path: tasks_path }
+= turbo_frame_tag "body" do
+  = render partial: "partials/head", locals: { title: "Edit task", link_name: sanitize("&larr; Back to tasks"), link_path: tasks_path }
 
-= render layout: "layouts/card", locals: { id: dom_id(@task) } do
-  = render "form", task: @task
+  = render layout: "layouts/card", locals: { id: dom_id(@task) } do
+    = render "form", task: @task

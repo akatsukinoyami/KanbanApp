@@ -1,35 +1,36 @@
-= render partial: "partials/head", locals: { title: @task.title, link_name: sanitize("&larr; Back to tasks"), link_path: tasks_path }
+= turbo_frame_tag "body" do
+  = render partial: "partials/head", locals: { title: @task.title, link_name: sanitize("&larr; Back to tasks"), link_path: tasks_path }
 
-.row.py-1
-  .col 
-    %b Description:
-    = @task.description
-.row.py-1
-  .col 
-    %b Status:
-    = @task.status.humanize
-  .col
-    %b Priority:
-    = @task.priority.humanize
+  .row.py-1
+    .col 
+      %b Description:
+      = @task.description
+  .row.py-1
+    .col 
+      %b Status:
+      = @task.status.humanize
+    .col
+      %b Priority:
+      = @task.priority.humanize
 
-%h3.py-3 Logs
-- @task.logs_humanized.each do |log|
-  = render(layout: "layouts/card", locals: { id: "log_#{log[:id]}" }) do
-    .row
-      .col-4
-        .py-1
-          %b Date:
-          = log[:created_at]
-        .py-1
-          %b Action:
-          = log[:action]
-      .col-8.py-1
-        .row.py-1.fw-bold
-          .col Column name
-          .col From 
-          .col To
-        - log[:audited_changes].each do |column_name, from, to|
-          .row.py-1
-            .col= column_name
-            .col= from 
-            .col= to
+  %h3.py-3 Logs
+  - @task.logs_humanized.each do |log|
+    = render(layout: "layouts/card", locals: { id: "log_#{log[:id]}" }) do
+      .row
+        .col-4
+          .py-1
+            %b Date:
+            = log[:created_at]
+          .py-1
+            %b Action:
+            = log[:action]
+        .col-8.py-1
+          .row.py-1.fw-bold
+            .col Column name
+            .col From 
+            .col To
+          - log[:audited_changes].each do |column_name, from, to|
+            .row.py-1
+              .col= column_name
+              .col= from 
+              .col= to

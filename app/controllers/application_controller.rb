@@ -7,5 +7,5 @@ class ApplicationController < ActionController::Base
     # Permit the `first_name` parameter along with the other
     # sign up parameters.
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
-    end
+  end
 end

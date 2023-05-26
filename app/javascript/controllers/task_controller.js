@@ -5,17 +5,19 @@ export default class extends Controller {
   connect() {
   }
   
-  filter(event){
-    const filter = event.srcElement;
-    const frame = document.querySelector("turbo-frame#body");
+  filter(){
+    const priorities = [];
+    [...document.getElementsByClassName("priority-filter")].forEach((element) => {
+      if(element.checked) priorities.push(element.id.replace("_priority_filter", ""))
+    })
 
-    if (filter.selectedIndex) {
-      const checked = filter.options[filter.selectedIndex].text;
-      frame.src = location.href + '?' + new URLSearchParams({ priority: checked }).toString();
-    } else {
-      frame.src = location.href;
+    if (priorities.length !== 0){
+      const filter = document.getElementById("btn-check").checked;
+      const prioritiesStrigified = encodeURIComponent(JSON.stringify(priorities));
+
+      const frame = document.querySelector("turbo-frame#body");
+      frame.src = `${location.href}?filter_opened=${filter}&priorities=${prioritiesStrigified}`;
+      frame.reload();
     }
-
-    frame.reload();
   }
 }

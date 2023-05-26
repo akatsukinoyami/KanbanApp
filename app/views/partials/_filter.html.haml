@@ -1,4 +1,19 @@
-.row 
-  .col-md-3.offset-md-9
-    = label :priority, :priority_filter, class: "fw-bold"
-    = select_tag :priority, options_for_select(@priorities, @priority), include_blank: true, class: "form-control",  data: { controller: "task", action: "task#filter" }
+.row
+  .col-md-4.offset-md-8.d-flex.flex-column.align-items-end
+    %input.btn-check#btn-check{autocomplete: "off", type: "checkbox", checked: @filter_opened}
+    %label.btn.btn-secondary.mb-4{for: "btn-check"} Filter by priority
+
+    .card#filter-card
+      .card-body.d-flex
+        - @priorities[:all].each do | priority |
+          .form-check.form-switch.me-2
+            %input.form-check-input.priority-filter{ 
+              id: filter_name(priority), 
+              checked: checked(priority), 
+              type: "checkbox", 
+              role: "switch", 
+              "data-controller": "task", 
+              "data-action": "task#filter" 
+            }
+            %label.form-check-label{ for: filter_name(priority) }
+              = priority.humanize 

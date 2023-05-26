@@ -10,11 +10,10 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
     = render partial: "partials/navbar"
-    = turbo_frame_tag "body" do
 
-      .container.pt-4
-        = render partial: "partials/alert", locals: { alert: , style: "alert-danger"} if alert
-        = render partial: "partials/alert", locals: { alert: notice, style: "alert-success"} if notice
-        = yield
+    .container.pt-4
+      = render partial: "partials/alert", locals: { alert: , style: "alert-danger"} if alert
+      = render partial: "partials/alert", locals: { alert: notice, style: "alert-success"} if notice
+      = yield
 
-      = render partial: "partials/footer"
+    = render partial: "partials/footer"

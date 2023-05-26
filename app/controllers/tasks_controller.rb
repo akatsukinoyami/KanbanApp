@@ -7,11 +7,18 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @tasks = current_user.tasks.order(priority: :asc)
-    @tasks = @tasks.with_priority(params[:priority]) if params[:priority]
-
     @statuses = Task.statuses
-    @priorities = Task.priorities.keys
-    @priority = params[:priority] || ""
+    @priorities = {
+      all: Task.priorities.keys,
+      checked: Task.priorities.keys,
+    }
+
+    @filter_opened = params[:filter_opened] ? JSON.parse(params[:filter_opened]) : false
+    if params[:priorities]
+      priorities = JSON.parse(params[:priorities])
+      @tasks = @tasks.with_priority(priorities);
+      @priorities[:checked] = priorities
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
