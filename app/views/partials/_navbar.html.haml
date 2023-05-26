@@ -5,10 +5,14 @@
     %span.navbar-toggler-icon
 
   #navbarSupportedContent.collapse.navbar-collapse.mx-3
-    - if current_user
-      %ul.navbar-nav.ms-auto
+    %ul.navbar-nav.ms-auto
+      - if current_user
         %li.nav-item
           = link_to "Hello, #{current_user.name}!", "#", class: "nav-link"
         
         %li.nav-item
           = button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light"
+    
+      %li.nav-item.ms-2
+        = link_to "https://github.com/akatsukinoyami/KanbanApp", class: "btn btn-light", target: "_blank" do
+          = render partial: "partials/github"
