@@ -23,8 +23,11 @@ gem "tzinfo-data"
 # gem "bcrypt", "~> 3.1.7"            # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "image_processing", "~> 1.2"    # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "kredis"                        # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "redis", "~> 4.0"               # Use Redis adapter to run Action Cable in production
 # gem "sassc-rails"                   # Use Sass to process CSS
+
+group :development do
+  gem "redis", "~> 4.0"                 # Use Redis adapter to run Action Cable in production
+end
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ] # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
