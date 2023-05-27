@@ -1,5 +1,7 @@
 # KanbanApp
 
+[Demo application](https://kanban.katsu.moe/tasks)
+
 ## Installation
 
 - Clone repository
