@@ -54,10 +54,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-      respond_to do |format|
-        format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
-        format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
-      end
+      redirect_to tasks_path, notice: "Task was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -66,7 +63,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
-
+    set_changes_count
     respond_to do |format|
       format.turbo_stream { flash.now[:notice] = "Task was successfully destroyed." }
       format.html { redirect_to tasks_path, notice: "Task was successfully destroyed." }

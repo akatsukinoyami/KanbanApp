@@ -1,3 +1,4 @@
 = turbo_stream.remove @task
 
-= turbo_stream.prepend "flash", partial: "partials/flash"
+= turbo_stream.prepend :flash, partial: "partials/flash"
+= turbo_stream.replace :footer, partial: "partials/footer"

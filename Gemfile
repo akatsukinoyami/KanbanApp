@@ -25,7 +25,7 @@ gem "tzinfo-data"
 # gem "kredis"                        # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "sassc-rails"                   # Use Sass to process CSS
 
-group :development do
+group :production do
   gem "redis", "~> 4.0"                 # Use Redis adapter to run Action Cable in production
 end
 
