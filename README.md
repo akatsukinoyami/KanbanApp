@@ -10,6 +10,14 @@
     git clone https://github.com/akatsukinoyami/KanbanApp.git
     ```
 
+- Create `.env`
+
+    ```sh
+    cp .env.example .env
+    ```
+
+- Make changes in `.env`
+
 - Start containers
 
     ```sh
