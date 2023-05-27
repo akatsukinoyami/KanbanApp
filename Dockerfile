@@ -5,7 +5,8 @@ RUN apk update && apk add --no-cache build-base libpq-dev nodejs yarn
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --without development test
+RUN bundle config set --local without 'development test'
+RUN bundle install
 
 COPY . .
 
