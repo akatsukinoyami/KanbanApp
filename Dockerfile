@@ -5,15 +5,13 @@ RUN apk update && apk add --no-cache build-base libpq-dev nodejs yarn
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-COPY package.json yarn.lock ./
-
-RUN bundle
-RUN yarn
+RUN bundle install --without development test
 
 COPY . .
 
 RUN bundle exec rails assets:precompile
+RUN apk del build-base
 
-CMD bundle exec rails s -p 3000 -b '0.0.0.0'
+CMD bundle exec rails s -p 3000 -b '0.0.0.0' 
 
 EXPOSE 3000
