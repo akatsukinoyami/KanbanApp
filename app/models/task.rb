@@ -7,6 +7,11 @@ class Task < ApplicationRecord
   
   belongs_to :user
 
+  validates :title, presence: true
+  validates :status, presence: true, inclusion: { in: statuses.keys }
+  validates :priority, presence: true, inclusion: { in: priorities.keys }
+  validates :user, presence: true
+
   after_create_commit { broadcast_append_to('tasks') }
 
   audited
