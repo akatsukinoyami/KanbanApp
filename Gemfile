@@ -9,7 +9,7 @@ gem "bootstrap", "~> 5.2"
 gem "cssbundling-rails"               # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "devise", "~> 4.9"
 gem "jsbundling-rails"                # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "nokogiri", force_ruby_platform: true
+gem "nokogiri", "~> 1.15", force_ruby_platform: true
 gem "haml-rails", "~> 2.0"
 gem "hotwire-rails", "~> 0.1.3"
 gem "pg", "~> 1.1"                    # Use postgresql as the database for Active Record
@@ -26,14 +26,22 @@ gem "tzinfo-data"
 # gem "sassc-rails"                   # Use Sass to process CSS
 
 group :production do
-  gem "redis", "~> 4.0"                 # Use Redis adapter to run Action Cable in production
+  gem "redis", "~> 4.0"               # Use Redis adapter to run Action Cable in production
+end
+
+group :test do
+  gem "capybara", "~> 3.39"
+  gem "factory_bot_rails", "~> 6.2"
+  gem "faker", "~> 3.2"
+  gem "rspec-rails", "~> 6.0"
+  gem "selenium-webdriver", "~> 4.9"
+  gem "shoulda-matchers", "~> 5.3"
 end
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ] # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "pp", "~> 0.4.0"
   gem "pry", "~> 0.14.2"
-  gem "rspec", "~> 3.12"
 end
 
 group :development do
