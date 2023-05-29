@@ -63,6 +63,59 @@ describe "tasks", type: :feature do
     end
   end
 
+  describe "log", type: :feature do
+    let(:title2) { Faker::Lorem.sentence }
+    let(:task)   { create(:task, title: title, user: @user) }
+
+    it "should open task log by Log button" do
+      task
+      visit '/'
+      click_link "Log"
+
+      expect(page).to have_content task.title
+      expect(page).to have_content task.created_at
+      expect(page).to have_content task.user.name
+    end
+
+    it "should open return to index by 'Back to tasks' button" do
+      task
+      visit '/'
+      click_link "Log"
+
+      expect(page).to have_content task.title
+      expect(page).to have_content task.created_at
+      expect(page).to have_content task.user.name
+      
+      click_link "← Back to tasks"
+      
+      expect(page).to have_content "Tasks"
+      expect(page).to have_content "Filter by priority"
+      Task.statuses.keys.each do |status|
+        expect(page).to have_content status.humanize
+      end
+    end
+
+    it "should contain log about edit of task" do
+      task
+      visit '/'
+  
+      click_link "Edit"
+      fill_in :task_title, with: title2
+
+      before_footer_text = footer_text
+      click_button "Update"
+      
+      expect(footer_text).not_to eq before_footer_text
+      expect(page).to have_content title2
+
+      click_link "Log"
+
+      expect(page).to have_content title
+      expect(page).to have_content task.created_at
+      expect(page).to have_content task.updated_at
+    end
+  end
+
   describe "create", type: :feature do
     let(:description) { Faker::Lorem.sentences.join(". ") }
     let(:status_select) { select random_status, from: :task_status }
@@ -81,6 +134,22 @@ describe "tasks", type: :feature do
       expect(page).to have_content "Task was successfully created"
       expect(page).to have_content title
       expect(footer_text).not_to eq before_footer_text
+    end
+
+    it "should not create task if pressed by 'Back to tasks' button" do
+      visit '/tasks/new'
+      before_footer_text = footer_text
+  
+      fill_in :task_title, with: title
+      fill_in :task_description, with: description
+      status_select.select_option
+      priority_select.select_option
+
+      click_link "← Back to tasks"
+  
+      expect(page).not_to have_content "Task was successfully created"
+      expect(page).not_to have_content title
+      expect(footer_text).to eq before_footer_text
     end
   end
 
@@ -120,7 +189,7 @@ describe "tasks", type: :feature do
   describe "destroy", type: :feature do
     let(:task) { create(:task, title: title, user: @user) }
 
-    it "should destroy tsk in direct flow" do
+    it "should destroy task in direct flow" do
       before = footer_text
       
       task
