@@ -53,6 +53,13 @@
     docker-compose --env-file .env run web rails db:migrate
     ```
 
+- Run tests 
+
+    ```sh
+    bundle install
+    bundle exec rspec
+    ```
+    
 ## Used technologies
 
 - [Ruby](https://www.ruby-lang.org/) 3.2.2
@@ -63,3 +70,7 @@
 - [Bootstrap](https://github.com/twbs/bootstrap) as CSS framework
 - [Hotwire](https://github.com/hotwired) for SPA-like experience
 - [Audit](https://github.com/collectiveidea/audited) for version logging
+
+- [Rspec](https://rspec.info)
+- [Capybara](https://github.com/teamcapybara/capybara)
+- [Shoulda](https://github.com/thoughtbot/shoulda-matchers)
