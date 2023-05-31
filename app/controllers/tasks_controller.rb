@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     @filter_opened = params[:filter_opened] ? JSON.parse(params[:filter_opened]) : false
     if params[:priorities]
       priorities = JSON.parse(params[:priorities])
-      @tasks = @tasks.with_priority(priorities);
+      @tasks = @tasks.with_priority(priorities)
       @priorities[:checked] = priorities
     end
   end
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/logs
   def logs
-    @task = Task.find(params[:task_id])
+    @task = current_user.tasks.find(params[:task_id])
   end
 
   # GET /tasks/new
@@ -73,7 +73,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -84,7 +84,6 @@ class TasksController < ApplicationController
     def set_form_variables
       @statuses = Task.statuses.keys.map { |status| [status.humanize, status]}
       @priorities = Task.priorities.keys.map { |priority| [priority.humanize, priority]}
-      @users = User.pluck(:first_name, :id)
     end
 
     def set_changes_count
